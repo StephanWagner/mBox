@@ -1,0 +1,67 @@
+mBox
+====
+
+mBox is a JavaScript (MooTools) library, which lets you easily set up tooltips, modal windows, notice messages and more.
+
+Documentation
+=============
+
+http://www.htmltweaks.com/mBox/Documentation
+
+Installation
+============
+
+To get started, all you need is a new version of MooTools and MooTools More/Element.Measure.
+Then include mBox.Core.js together with its CSS file and you are set.
+
+- MooTools 1.4.5
+- MooTools More/Element.Measure
+- mBox.Core.js
+- assets/mBoxCore.css
+
+mBox.Core
+=========
+
+A very basic mBox could look like this:
+
+var myMBox = new mBox({
+    content: 'This is a very basic mBox. Click anywhere to close.'
+});
+myMBox.open();
+
+mBox.Tooltip
+============
+
+The mBox.Tooltip class extends mBox.Core, helping you to easily attach tooltips to any DOM element.
+In following example a tooltip will show up on mouseover of an element with the id="myTooltip1":
+
+new mBox.Tooltip({
+    content: 'Default tooltip.',
+    attach: 'myTooltip1'
+});
+
+mBox.Tooltip
+============
+
+With mBox.Modal you can easily install modal dialog windows.
+In following example a modal dialog will show up when you click the element with the id="myModalDialog1":
+
+new mBox.Modal({
+    title: 'My modal dialog',
+    content: 'This is a simple modal dialog window.',
+    attach: 'myModalDialog1'
+});
+
+mBox.Tooltip
+============
+
+With mBox.Notice you can show little notices to your visitors.
+Simply create a new instance of mBox.Notice and your notice will pop up immediately:
+
+new mBox.Notice({
+    content: 'This is a default notice'
+});
+
+Those are only very basic examples, this library can do a lot more. Read the documentation so see what you can do:
+
+http://www.htmltweaks.com/mBox/Documentation
