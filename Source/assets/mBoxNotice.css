@@ -1,0 +1,62 @@
+
+/*** notice theme: default ***/
+
+.mBox.Notice {
+	font-size:16px;
+	line-height:normal;
+}
+.mBox.Notice .mBoxContainer {
+	color:#fff;
+	text-shadow:0 -1px 1px #000;
+	padding:20px 30px;
+	cursor:pointer;
+	background-color:#000;
+	background:rgba(0, 0, 0, 0.85);
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;
+}
+.mBox.Notice .mBoxContent {
+	word-break:break-word;
+}
+
+/*** notice icons ***/
+
+.mBox.Notice .mBoxNoticeOk,
+.mBox.Notice .mBoxNoticeSuccess,
+.mBox.Notice .mBoxNoticeError,
+.mBox.Notice .mBoxNoticeCancel,
+.mBox.Notice .mBoxNoticeInfo,
+.mBox.Notice .mBoxNoticeNotice,
+.mBox.Notice .mBoxNoticeAttention {
+	padding-left:70px;
+	background-image:url('images/mBox-Sprites.png');
+	background-repeat:no-repeat;
+}
+
+/*** notice: ok ***/
+
+.mBox.Notice .mBoxNoticeOk,
+.mBox.Notice .mBoxNoticeSuccess {
+	background-position:20px -187px;
+}
+
+/*** notice: error ***/
+
+.mBox.Notice .mBoxNoticeError,
+.mBox.Notice .mBoxNoticeCancel {
+	background-position:20px -487px;
+}
+
+/*** notice: info ***/
+
+.mBox.Notice .mBoxNoticeInfo {
+	background-position:20px -787px;
+}
+
+/*** notice: notice, attention ***/
+
+.mBox.Notice .mBoxNoticeNotice,
+.mBox.Notice .mBoxNoticeAttention {
+	background-position:20px -1087px;
+}

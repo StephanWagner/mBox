@@ -1,0 +1,46 @@
+
+/*** tooltip theme: Black ***/
+
+.mBox.Tooltip-Black {
+	font-size:11px;
+	line-height:normal;
+}
+.mBox.Tooltip-Black .mBoxContainer {
+	background-color:#000;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.mBox.Tooltip-Black .mBoxContent {
+	color:#ffffff;
+	padding:5px 8px;
+	word-break:break-word;
+}
+.mBox.Tooltip-Black .mBoxTitle {
+	color:#ffffff;
+	font-weight:bold;
+	padding:4px 8px 2px;
+}
+.mBox.Tooltip-Black .mBoxPointer {
+	background:url('mBoxTooltip-Black-Sprites.png') no-repeat;
+} 
+.mBox.Tooltip-Black .mBoxPointerTop {
+	width:7px;
+	height:4px;
+	background-position:-1px -10px;
+}
+.mBox.Tooltip-Black .mBoxPointerBottom {
+	width:7px;
+	height:4px;
+	background-position:-1px -17px;
+}
+.mBox.Tooltip-Black .mBoxPointerRight {
+	width:4px;
+	height:7px;
+	background-position:-7px -1px;
+}
+.mBox.Tooltip-Black .mBoxPointerLeft {
+	width:4px;
+	height:7px;
+	background-position:0px -1px;
+}

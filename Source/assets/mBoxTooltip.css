@@ -1,0 +1,84 @@
+
+/*** tooltip theme: default ***/
+
+.mBox.Tooltip {
+	font-size:11px;
+	line-height:normal;
+}
+.mBox.Tooltip .mBoxContainer {
+	background:#fff;
+	border:1px solid #d6d6d6;
+	-webkit-box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+	box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+.mBox.Tooltip .mBoxContent {
+	background:#fff;
+	color:#353535;
+	padding:5px 8px;
+	word-break:break-word;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+.mBox.Tooltip.hasTitle .mBoxContent {
+	-webkit-border-top-left-radius:0;
+	-moz-border-radius-topleft:0;
+	border-top-left-radius:0;
+	-webkit-border-top-right-radius:0;
+	-moz-border-radius-topright:0;
+	border-top-right-radius:0;
+}
+.mBox.Tooltip.mBoxLoading .mBoxContent {
+	min-height:11px;
+	background:url('images/mBox-Loader.gif') center center no-repeat;
+}
+.mBox.Tooltip .mBoxTitle {
+	color:#505050;
+	text-shadow:0 1px 0 #fff;
+	padding:5px 8px;
+	font-weight:bold;
+	border-bottom:1px solid #d6d6d6;
+	background-color:#f8f8f8;
+	background-image:-webkit-linear-gradient(top,#fdfdfd,#f4f4f4);
+	background-image:-moz-linear-gradient(top,#fdfdfd,#f4f4f4);
+	background-image:-ms-linear-gradient(top,#fdfdfd,#f4f4f4);
+	background-image:-o-linear-gradient(top,#fdfdfd,#f4f4f4);
+	background-image:linear-gradient(top,#fdfdfd,#f4f4f4);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#fdfdfd,EndColorStr=#f4f4f4);
+	-webkit-box-shadow:inset 0 -1px 1px rgba(255, 255, 255, 0.8);
+	-moz-box-shadow:inset 0 -1px 1px rgba(255, 255, 255, 0.8);
+	box-shadow:inset 0 -1px 1px rgba(255, 255, 255, 0.8);
+	-webkit-border-top-left-radius:5px;
+	-moz-border-radius-topleft:5px;
+	border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	-moz-border-radius-topright:5px;
+	border-top-right-radius:5px;
+}
+.mBox.Tooltip .mBoxPointer {
+	background:url('images/mBoxTooltip-Sprites.png') no-repeat;
+}
+.mBox.Tooltip .mBoxPointerTop {
+	width:17px;
+	height:9px;
+	background-position:0px -18px;
+}
+.mBox.Tooltip .mBoxPointerBottom {
+	width:17px;
+	height:9px;
+	background-position:0px -28px;
+}
+.mBox.Tooltip .mBoxPointerRight {
+	width:9px;
+	height:17px;
+	background-position:-10px 0px;
+}
+.mBox.Tooltip .mBoxPointerLeft {
+	width:9px;
+	height:17px;
+	background-position:0px 0px;
+}

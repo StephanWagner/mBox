@@ -1,0 +1,24 @@
+
+/*** modal theme: default ***/
+
+.mBox.Core {
+	font-size:12px;
+	line-height:normal;
+}
+.mBox.Core .mBoxContainer {
+	background:#fff;
+	border:1px solid #d6d6d6;
+	-webkit-box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+	box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+}
+.mBox.Core .mBoxContent,
+.mBox.Core .mBoxTitle,
+.mBox.Core .mBoxFooter {
+	padding:15px;
+	word-break:break-word;
+}
+.mBox.Core.mBoxLoading .mBoxContent {
+	min-height:11px;
+	background:url('images/mBox-Loader.gif') center center no-repeat;
+}
