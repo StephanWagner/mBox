@@ -13,7 +13,7 @@ requires:
 
 provides: [mBox.Modal]
 
-documentation: http://www.htmltweaks.com/mBox/Documentation/Modal
+documentation: http://htmltweaks.com/mBox/Documentation/Modal
 ...
 */
  

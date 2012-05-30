@@ -12,7 +12,7 @@ requires:
 
 provides: [mBox]
 
-documentation: http://www.htmltweaks.com/mBox/Documentation
+documentation: http://htmltweaks.com/mBox/Documentation
 ...
 */
  
@@ -224,7 +224,7 @@ var mBox = new Class({
 				zIndex: this.options.zIndex,
 				position: (this.options.fixed == false || Browser.ie6 || Browser.ie7) ? 'absolute' : 'fixed',
 				display: 'none',
-				opacity: 0,
+				opacity: 0.00001,
 				top: -12000,
 				left: -12000,
 				zoom: 1
@@ -744,8 +744,16 @@ var mBox = new Class({
 				styles: {position: 'absolute'}
 			}).setStyle(pointer.position, 0).inject(this.wrapper, 'top');
 			
-			this.pointerDimensions = this.pointerElement.getDimensions({computeSize: true});
-
+			// opera wont calculate the size of the pointer correctly, needs to get fixed properly
+			if(Browser.opera) {
+				var tempContainer = new Element('div', {'class': 'mBox ' + (this.defaultTheme || 'Core') + (this.options.theme ? '-' + this.options.theme : '')}).inject(document.body).grab(this.pointerElement);
+				this.pointerDimensions = this.pointerElement.getDimensions({computeSize: true});
+				this.pointerElement.inject(this.wrapper, 'top');
+				tempContainer.destroy();
+			} else {
+				this.pointerDimensions = this.pointerElement.getDimensions({computeSize: true});
+			}
+			
 			this.container.setStyle('margin-' + pointer.position,
 				(pointer.position == 'left' || pointer.position == 'right') ? 
 				(this.pointerDimensions.width - this.container.getStyle('border-' + pointer.position).toInt()) :

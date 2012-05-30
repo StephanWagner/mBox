@@ -14,7 +14,7 @@ requires:
 
 provides: [mBox.Modal.Confirm]
 
-documentation: http://www.htmltweaks.com/mBox/Documentation/Modal
+documentation: http://htmltweaks.com/mBox/Documentation/Modal
 ...
 */
  

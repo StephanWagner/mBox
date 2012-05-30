@@ -13,7 +13,7 @@ requires:
 
 provides: [mBox.Tooltip]
 
-documentation: http://www.htmltweaks.com/mBox/Documentation/Tooltip
+documentation: http://htmltweaks.com/mBox/Documentation/Tooltip
 ...
 */
  

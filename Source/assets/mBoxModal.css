@@ -102,13 +102,11 @@
 	background:url('images/mBox-Sprites.png') 0px 0px no-repeat;
 }
 .mBox.Modal .mBoxClose:hover {
+	background-position:-17px -52px;
 	border-color:#c0c0c0;
 }
 .mBox.Modal .mBoxClose:hover div {
 	opacity:1;
-}
-.mBox.Modal .mBoxClose:hover {
-	background-position:-17px -52px;
 }
 .mBox.Modal .mBoxFooterContainer {
 	background-color:#f6f6f6;

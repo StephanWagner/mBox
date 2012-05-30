@@ -3,11 +3,11 @@ mBox
 
 mBox is a powerful library, helping you to easily create tooltips, modal windows, notice messages and more.
 
-Demo: http://www.htmltweaks.com/mBox
+Demo: http://htmltweaks.com/mBox
 
-Docs: http://www.htmltweaks.com/mBox/Documentation
+Docs: http://htmltweaks.com/mBox/Documentation
 
-![Screenshot](http://www.htmltweaks.com/files/mBox/screenshot.png)
+![Screenshot](http://htmltweaks.com/files/mBox/screenshot.png)
 
 How to use
 ----------
@@ -58,4 +58,4 @@ Use mBox.Notice to show a notice to your visitors.
 
 Those examples show only the very basic usage of mBox.
 
-Read the Documentation at http://www.htmltweaks.com/mBox/Documentation to see the many options and events you can set to customize your mBoxes.
+Read the Documentation at http://htmltweaks.com/mBox/Documentation to see the many options and events you can set to customize your mBoxes.

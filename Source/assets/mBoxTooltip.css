@@ -59,6 +59,30 @@
 	-moz-border-radius-topright:5px;
 	border-top-right-radius:5px;
 }
+.mBox.Tooltip .mBoxClose {
+	display:block;
+	width:13px;
+	height:13px;
+	padding:0px 0px 0px 0px;
+	position:absolute;
+	top:6px;
+	right:15px;
+}
+.mBox.Tooltip .mBoxClose div {
+	opacity:0.65;
+	width:7px; 
+	height:7px;
+	position:absolute;
+	top:3px;
+	left:3px;
+	background:url('images/mBox-Sprites.png') 0px 0px no-repeat;
+}
+.mBox.Tooltip .mBoxClose:hover {
+	background-position:-17px -52px;
+}
+.mBox.Tooltip .mBoxClose:hover div {
+	opacity:1;
+}
 .mBox.Tooltip .mBoxPointer {
 	background:url('images/mBoxTooltip-Sprites.png') no-repeat;
 }

@@ -13,7 +13,7 @@ requires:
 
 provides: [mBox.Notice]
 
-documentation: http://www.htmltweaks.com/mBox/Documentation/Notice
+documentation: http://htmltweaks.com/mBox/Documentation/Notice
 ...
 */
  
