@@ -46,7 +46,7 @@ var mBox = new Class({
 		event: 'click',				// the event which will trigger the mBox to show (can be: 'click' || 'mouseover' (= 'mouseenter'))
 		preventDefault: false,		// prevents the default action when clicking on attached item (e.g. prevents to follow a link when clicking on a link)
 		
-		inject: null,				// TODO element to inject the wrapper to (open and close will be disabled)
+		//inject: null,				// TODO element to inject the wrapper to (open and close will be disabled)
 		
 		width: 'auto',				// width of the content area
 		height: 'auto',				// height of the content area
@@ -57,8 +57,9 @@ var mBox = new Class({
 		setContent:
 			'data-setContent',		// if the attached element has the attribute data-setContent it's value will be set as new content on open
 		
-		load: null,					// set to ajax or iframe to either load the content from url
+		load: null,					// set to ajax to load the content from url
 		url: '',					// the url to load the content from if load is set to ajax or iframe
+		reload: false,				// reloads the content each time the mBox is opened
 		
 		title: null,				// adds a title (element reference, element-id or string)
 		footer: null,				// adds a footer (element reference, element-id or string)
@@ -112,8 +113,8 @@ var mBox = new Class({
 		closeOnMouseleave: false,	// close mBox when the mouse leaves the mBox area or the attached area
 		
 		closeInTitle: false,		// adds a close button in the title area // TODO won't work in tooltip title yet
-		closeInContainer: false,	// TODO add a close button to the container
-		closeInWindow: false,		// TODO add a close button to the window
+		//closeInContainer: false,	// TODO add a close button to the container
+		//closeInWindow: false,		// TODO add a close button to the window
 		
 		delayOpen: 0,				// delay opening the mBox in ms
 		delayClose: 0,				// delay closing the mBox in ms
@@ -129,6 +130,8 @@ var mBox = new Class({
 		// onClose: function() {},
 		// onCloseComplete: function() {}
 		// onBoxReady: function() {}
+		
+		// onAjaxComplete: function() {}
 	},
 	
 	// initialize
@@ -284,7 +287,7 @@ var mBox = new Class({
 			var events = {
 				mouseenter: function(ev) {
 					this.target = this.getTargetFromEvent(ev);
-					this.attachedElement = this.getTargetElementFromEvent(ev);
+					this.source = this.getTargetElementFromEvent(ev);
 					this.open();
 				}.bind(this),
 				mouseleave: function(ev) {
@@ -302,7 +305,7 @@ var mBox = new Class({
 						this.close();
 					} else {
 						this.target = this.getTargetFromEvent(ev);
-						this.attachedElement = this.getTargetElementFromEvent(ev);
+						this.source = this.getTargetElementFromEvent(ev);
 						this.open();
 					}
 				}.bind(this)
@@ -316,6 +319,29 @@ var mBox = new Class({
 			}
 		}.bind(this));
 	},	
+	
+	// load content with ajax into mBox
+	loadAjax: function(sendObj) {
+		if(!this.ajaxRequest) {
+			this.ajaxRequest = new Request.HTML({
+				link: 'cancel',
+				update: this.content,
+				onRequest: function() {
+					this.setContent('');
+					this.wrapper.addClass('mBoxLoading');
+				}.bind(this),
+				onComplete: function() {
+					this.wrapper.removeClass('mBoxLoading');
+					if(this.options.width == 'auto' || this.options.height == 'auto') {
+						this.setPosition();
+					}
+					this.fireEvent('ajaxComplete');
+				}.bind(this)
+			}).send();
+		}
+		this.ajaxRequest.send(sendObj);
+		this.ajaxLoaded = true;
+	},
 	
 	// open / show the mBox
 	open: function(options) {
@@ -339,32 +365,21 @@ var mBox = new Class({
 				this.isOpen = true;				
 				
 				// load content from ajax
-				if(this.options.load == 'ajax' && this.options.url && !this.ajaxLoaded) {
-					new Request.HTML({
-						url: this.options.url,
-						update: this.content,
-						onRequest: function() {
-							this.wrapper.addClass('mBoxLoading');
-						}.bind(this),
-						onComplete: function() {
-							this.wrapper.removeClass('mBoxLoading');
-							this.setPosition();
-						}.bind(this)
-					}).send();
-					this.ajaxLoaded = true;
+				if(this.options.load == 'ajax' && this.options.url && (!this.ajaxLoaded || this.options.reload)) {
+					this.loadAjax({url: this.options.url});
 				}
 				
 				// set target
 				this.target = this.getTarget(options.target || null);
 				
 				// set new content
-				if (this.options.setContent && this.attachedElement && this.attachedElement.getAttribute(this.options.setContent)) {
+				if (this.options.setContent && this.source && this.source.getAttribute(this.options.setContent)) {
 					
-					if ($(this.attachedElement.getAttribute(this.options.setContent))) {
+					if ($(this.source.getAttribute(this.options.setContent))) {
 						this.content.getChildren().setStyle('display', 'none');
-						$(this.attachedElement.getAttribute(this.options.setContent)).setStyle('display', '');
+						$(this.source.getAttribute(this.options.setContent)).setStyle('display', '');
 					} else {
-						var attribute_array = this.attachedElement.getAttribute(this.options.setContent).split('|'),
+						var attribute_array = this.source.getAttribute(this.options.setContent).split('|'),
 							content = attribute_array[0] || null,
 							title = attribute_array[1] || null,
 							footer = attribute_array[2] || null;
@@ -911,8 +926,7 @@ var mBox = new Class({
 			}
 			
 			if(this.options.closeInTitle) {
-				new Element('a', {
-					href: 'javascript:;',
+				new Element('div', {
 					'class': 'mBoxClose',
 					events: {
 						click: function() {

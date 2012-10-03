@@ -40,7 +40,7 @@ h2 { margin-top:40px; }
 Have a look at the source code to find out how the following examples work.
 </p>
 
-<h2>mBox.Core.js</h2>
+<h2>mBox.Core</h2>
 
 <p>
 The core file contains all standard settings and functions.<br />
@@ -49,7 +49,7 @@ Include this one and you can already create basic popup windows:
 
 <a href="javascript:;" id="mBox_demo0">Click me</a>
 
-<h2>mBox.Tooltip.js</h2>
+<h2>mBox.Tooltip</h2>
 
 <p>
 The tooltip class helps you to attach tooltips to any DOM element or your mouse:
@@ -71,7 +71,7 @@ The tooltip class helps you to attach tooltips to any DOM element or your mouse:
 </div>
 </div>
 
-<h2>mBox.Modal.js</h2>
+<h2>mBox.Modal</h2>
 
 <p>
 This class lets you easily create modal dialogs:
@@ -89,7 +89,7 @@ With this class you can attach confirm dialogs to your links:
 
 <a id="mBox_demo24" href="javascript:;" data-confirm="Do you really want to do this?">Click me</a>
 
-<h2>mBox.Notice.js</h2>
+<h2>mBox.Notice</h2>
 
 <p>
 Use this class to show your visitors temporary notices:
@@ -194,6 +194,7 @@ window.addEvent('domready', function() {
 	
 	new mBox.Tooltip({
 		content: 'This tooltip won\'t close when you click on it, but will close when you click anywhere else',
+		title: 'Title',
 		setStyles: {content: {padding: 15, lineHeight: 20}},
 		width: 200,
 		offset: {
@@ -202,7 +203,8 @@ window.addEvent('domready', function() {
 		pointer: false,
 		attach: 'mBox_demo9',
 		event: 'click',
-		closeOnBodyClick: true
+		closeOnBodyClick: true,
+		closeInTitle: true
 	});
 	
 	new mBox.Tooltip({

@@ -1,46 +1,52 @@
 
-/*** tooltip theme: Black ***/
+/* Tooltip-Theme: Black */
 
 .mBox.Tooltip-Black {
-	font-size:11px;
-	line-height:normal;
+	font-size: 11px;
+	line-height: normal;
 }
+
 .mBox.Tooltip-Black .mBoxContainer {
-	background-color:#000;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	border-radius:3px;
+	background-color: #000;
+	border-radius: 3px;
 }
+
 .mBox.Tooltip-Black .mBoxContent {
-	color:#ffffff;
-	padding:5px 8px;
-	word-break:break-word;
+	color: #fff;
+	padding: 5px 8px;
+	word-break: break-word;
 }
+
 .mBox.Tooltip-Black .mBoxTitle {
-	color:#ffffff;
-	font-weight:bold;
-	padding:4px 8px 2px;
+	color: #fff;
+	font-weight: bold;
+	padding: 4px 8px 2px;
 }
+
 .mBox.Tooltip-Black .mBoxPointer {
-	background:url('mBoxTooltip-Black-Sprites.png') no-repeat;
+	background: no-repeat url(mBoxTooltip-Black-Sprites.png);
 } 
+
 .mBox.Tooltip-Black .mBoxPointerTop {
-	width:7px;
-	height:4px;
-	background-position:-1px -10px;
+	width: 7px;
+	height: 4px;
+	background-position: -1px -10px;
 }
+
 .mBox.Tooltip-Black .mBoxPointerBottom {
-	width:7px;
-	height:4px;
-	background-position:-1px -17px;
+	width: 7px;
+	height: 4px;
+	background-position: -1px -17px;
 }
+
 .mBox.Tooltip-Black .mBoxPointerRight {
-	width:4px;
-	height:7px;
-	background-position:-7px -1px;
+	width: 4px;
+	height: 7px;
+	background-position: -7px -1px;
 }
+
 .mBox.Tooltip-Black .mBoxPointerLeft {
-	width:4px;
-	height:7px;
-	background-position:0px -1px;
+	width: 4px;
+	height: 7px;
+	background-position: 0px -1px;
 }
