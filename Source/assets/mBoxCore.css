@@ -1,7 +1,7 @@
-
 .mBox.Core {
 	font-size: 12px;
 	line-height: normal;
+	border:0;
 }
 
 .mBox.Core .mBoxContainer {
