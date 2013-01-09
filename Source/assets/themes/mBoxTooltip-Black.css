@@ -1,4 +1,3 @@
-
 /* Tooltip-Theme: Black */
 
 .mBox.Tooltip-Black {
@@ -14,7 +13,6 @@
 .mBox.Tooltip-Black .mBoxContent {
 	color: #fff;
 	padding: 5px 8px;
-	word-break: break-word;
 }
 
 .mBox.Tooltip-Black .mBoxTitle {
@@ -24,8 +22,8 @@
 }
 
 .mBox.Tooltip-Black .mBoxPointer {
-	background: no-repeat url(mBoxTooltip-Black-Sprites.png);
-} 
+	background: no-repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAVCAYAAACQcBTNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIZJREFUeNqUUkEOwCAIo2b//3I3iBp1MFgvxlCKtog8ICkLeJxWPziTwF7g2qBojqInsJEj4tbQCsTZoGSUmCTGM7IGnB/EF1FxOYXV300Antl/wCg1RAF4f0CSILwLM9uqCY7FMuvgrGk4gpWoH0irRm1v7uPTqI2s8oGvL4FoN9w1uAUYAJb2PwK9FWu9AAAAAElFTkSuQmCC);
+}
 
 .mBox.Tooltip-Black .mBoxPointerTop {
 	width: 7px;

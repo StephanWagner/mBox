@@ -1,8 +1,15 @@
+mBox 0.2.6                            Jan 2013
+----------------------------------------------
+* mBox
+  - bugfix: opera positions mBoxes correctly now (thanks to hummal, https://github.com/hummal)
+  - improved: images have been replaced with data:image links (for IE7 support please adjust the CSS)
+  - improved: the demo html file is now html5 conform
+  - added: minified versions of js files (in Source/min)
 
 mBox 0.2.5                            Oct 2012
 ----------------------------------------------
 * mBox.Core
-  - improved: ajax calls can now be reloaded again when opened whith the option reload: true
+  - improved: ajax calls can now be reloaded again when opened with the option reload: true
   - added: ajax now fire the event ajaxComplete when the request is complete
   - improved: this.attachedElement renamed shorter to this.source
   - improved: better CSS structure, used googles CSS guidelines

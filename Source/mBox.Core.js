@@ -561,29 +561,43 @@ var mBox = new Class({
 	// get the current or given target
 	getTarget: function(target) {
 		var target = $(target) || target || this.target || $(this.options.target) || this.options.target || $(this.options.attach);
-		return target == 'mouse' ? 'mouse' : $(target);
+		return target == 'mouse' ? 'mouse' : this.fixOperaPositioning($(target));
 	},
 	
 	// get the target element from event target
 	getTargetFromEvent: function(ev) {
-		if(this.options.target) return $(this.options.target);
+		if(this.options.target) return this.fixOperaPositioning($(this.options.target));
 		return this.getTargetElementFromEvent(ev);
 	},
 	
 	// get the attached element from event
 	getTargetElementFromEvent: function(ev) {
 		if(ev && ev.target) {
-			if(this.targets.contains(ev.target)) return ev.target;
+			if(this.targets.contains(ev.target)) return this.fixOperaPositioning(ev.target);
 			
 			var parent_element = ev.target.getParent();
 			while(parent_element != null) {
 				if(this.targets.contains(parent_element)) {
-					return parent_element;
+					return this.fixOperaPositioning(parent_element);
 				}
 				parent_element = parent_element.getParent();
 			}
 		}
 		return null;
+	},
+	
+	// TEMP: This function fixes temporarily the mootools 1.4.5 positioning bug in opera
+	fixOperaPositioning: function(el) {
+		if($(el) && !$(el).retrieve('OperaBugFixed') && el != window) {
+			try {
+				if(!($(el).getStyle('border-top-width').toInt() + $(el).getStyle('border-right-width').toInt() + $(el).getStyle('border-bottom-width').toInt() + $(el).getStyle('border-left-width').toInt())) {
+					$(el).setStyle('border', 0);
+				}
+			}
+			catch(e) {}
+			$(el).store('OperaBugFixed');
+		}
+		return el;
 	},
 	
 	// get cached variable position or get a clean position variable

@@ -1,28 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>mBox Demo</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Stephan Wagner" />
+<meta charset="utf-8">
+<meta name="author" content="Stephan Wagner">
 
-<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxCore.css" />
-<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxModal.css" />
-<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxNotice.css" />
-<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxTooltip.css" />
-<link rel="stylesheet" type="text/css" href="../Source/assets/themes/mBoxTooltip-Black.css" />
-<link rel="stylesheet" type="text/css" href="../Source/assets/themes/mBoxTooltip-BlackGradient.css" />
+<link rel="stylesheet" href="../Source/assets/mBoxCore.css">
+<link rel="stylesheet" href="../Source/assets/mBoxModal.css">
+<link rel="stylesheet" href="../Source/assets/mBoxNotice.css">
+<link rel="stylesheet" href="../Source/assets/mBoxTooltip.css">
+<link rel="stylesheet" href="../Source/assets/themes/mBoxTooltip-Black.css">
+<link rel="stylesheet" href="../Source/assets/themes/mBoxTooltip-BlackGradient.css">
 
-<script type="text/javascript" src="mootools-core-1.4.5-full-nocompat-yc.js"></script>
-<script type="text/javascript" src="mootools-more-1.4.0.1.js"></script>
+<script src="mootools-core-1.4.5-full-nocompat-yc.js"></script>
+<script src="mootools-more-1.4.0.1.js"></script>
 
-<script type="text/javascript" src="../Source/mBox.Core.js"></script>
-<script type="text/javascript" src="../Source/mBox.Modal.js"></script>
-<script type="text/javascript" src="../Source/mBox.Modal.Confirm.js"></script>
-<script type="text/javascript" src="../Source/mBox.Notice.js"></script>
-<script type="text/javascript" src="../Source/mBox.Tooltip.js"></script>
+<script src="../Source/min/mBox.All.min.js"></script>
 
-<style type="text/css">
+<style>
 body { font-family:"Lucida Grande", Lucida, Verdana, Arial, sans-serif; font-size:14px; color:#353535; }
 a { color:#406080; }
 h2 { margin-top:40px; }
@@ -43,7 +39,7 @@ Have a look at the source code to find out how the following examples work.
 <h2>mBox.Core</h2>
 
 <p>
-The core file contains all standard settings and functions.<br />
+The core file contains all standard settings and functions.<br>
 Include this one and you can already create basic popup windows:
 </p>
 
@@ -117,7 +113,7 @@ To learn more about mBox, please read the <a href="http://htmltweaks.com/mBox/Do
 
 </div>
 
-<script type="text/javascript">
+<script>
 window.addEvent('domready', function() {
 	
 	/*** core ***/
@@ -159,7 +155,7 @@ window.addEvent('domready', function() {
 	});
 	
 	new mBox.Tooltip({
-		content: 'This tooltip opens<br />after 0.5 seconds and <br />closes after 2 seconds',
+		content: 'This tooltip opens<br>after 0.5 seconds and <br>closes after 2 seconds',
 		setStyles: {content: {padding: 15, lineHeight: 20}},
 		pointer: ['right', 15],
 		delayOpen: 500,
@@ -168,7 +164,7 @@ window.addEvent('domready', function() {
 	});
 	
 	new mBox.Tooltip({
-		content: 'This tooltip will stay<br />open on mouseover',
+		content: 'This tooltip will stay<br>open on mouseover',
 		setStyles: {content: {padding: 15, lineHeight: 20}},
 		position: {
 			x: 'center',
@@ -179,14 +175,14 @@ window.addEvent('domready', function() {
 	});
 	
 	new mBox.Tooltip({
-		content: 'This tooltip<br />flies in and out',
+		content: 'This tooltip<br>flies in and out',
 		setStyles: {content: {padding: 15, lineHeight: 20}},
 		attach: 'mBox_demo7',
 		transition: 'flyin'
 	});
 	
 	new mBox.Tooltip({
-		content: 'This tooltip bounces<br />when opened',
+		content: 'This tooltip bounces<br>when opened',
 		setStyles: {content: {padding: 15, lineHeight: 20}},
 		attach: 'mBox_demo8',
 		transition: 'bounceout'
@@ -231,7 +227,7 @@ window.addEvent('domready', function() {
 	/*** modal dialogs ***/
 	
 	new mBox.Modal({
-		content: 'This is a standard modal window with a title<br />You can move the window by dragging the title',
+		content: 'This is a standard modal window with a title<br>You can move the window by dragging the title',
 		setStyles: {content: {padding: '25px 15px', lineHeight: 25}},
 		title: 'Standard Modal Window',
 		attach: 'mBox_demo21'
@@ -249,7 +245,7 @@ window.addEvent('domready', function() {
 	});
 	
 	new mBox.Modal({
-		content: '<input type="text" style="width:300px" placeholder="Subject" /><br /><textarea style="width:300px; margin-top:5px" cols="40" rows="10" placeholder="Message"></textarea>',
+		content: '<input type="text" style="width:300px" placeholder="Subject"><br><textarea style="width:300px; margin-top:5px" cols="40" rows="10" placeholder="Message"></textarea>',
 		title: 'Modal Window with a form',
 		buttons: [
 			{title: 'Cancel'},
@@ -306,7 +302,7 @@ window.addEvent('domready', function() {
 	});
 	
 	new mBox.Modal({
-		content: '<input type="text" id="modalExampleInputName" style="width:300px" placeholder="Type in your full name" /><br /><textarea id="modalExampleInputMessage" style="width:300px; margin-top:5px" cols="40" rows="10" placeholder="Type in your message"></textarea>',
+		content: '<input type="text" id="modalExampleInputName" style="width:300px" placeholder="Type in your full name"><br><textarea id="modalExampleInputMessage" style="width:300px; margin-top:5px" cols="40" rows="10" placeholder="Type in your message"></textarea>',
 		title: 'Add a Comment',
 		onCloseComplete: function() {
 			$('modalExampleInputName').value = $('modalExampleInputMessage').value = '';
@@ -334,7 +330,6 @@ window.addEvent('domready', function() {
 	});
 	
 });
-
 </script>
 
 </body>

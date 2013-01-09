@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+=======
+/* Global CSS */
+
+.mBox,
+.mBoxContainer {
+	border: 0;
+}
+
+.mBoxContent,
+.mBoxTitle,
+.mBoxFooter {
+	position: relative;
+	word-break: break-word;
+}
+
+.mBoxLoading .mBoxContent {
+	min-height: 11px;
+	background:  center center no-repeat url(data:image/gif;base64,R0lGODlhEAALAPQAAP///1BQUOXl5d7e3vDw8FRUVFBQUG9vb6mpqZGRkc/Pz2dnZ4KCgq6urpSUlNLS0mpqalJSUoWFhe3t7ePj4/f393Z2dubm5vX19czMzL29vdra2vPz8wAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA);
+}
+
+/* mBox Core specific CSS */
+
+>>>>>>> Version 0.2.6
 .mBox.Core {
 	font-size: 12px;
 	line-height: normal;
@@ -13,8 +37,8 @@
 .mBox.Core .mBoxContent,
 .mBox.Core .mBoxTitle,
 .mBox.Core .mBoxFooter {
-	position: relative;
 	padding: 15px;
+<<<<<<< HEAD
 	word-break: break-word;
 }
 
@@ -22,3 +46,6 @@
 	min-height: 11px;
 	background: url(images/mBox-Loader.gif) center center no-repeat;
 }
+=======
+}
+>>>>>>> Version 0.2.6

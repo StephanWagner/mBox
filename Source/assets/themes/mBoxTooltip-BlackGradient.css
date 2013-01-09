@@ -1,5 +1,4 @@
-
-/*** tooltip theme: Black ***/
+/* Tooltip-Theme: BlackGradient */
 
 .mBox.Tooltip-BlackGradient {
 	font-size: 12px;
@@ -21,7 +20,6 @@
 	color: #fff;
 	text-shadow: 0px -1px 1px #000000;
 	padding: 8px 15px;
-	word-break: break-word;
 }
 
 .mBox.Tooltip-BlackGradient .mBoxTitle {
@@ -31,7 +29,7 @@
 }
 
 .mBox.Tooltip-BlackGradient .mBoxPointer {
-	background: no-repeat url(mBoxTooltip-BlackGradient-Sprites.png);
+	background: no-repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAVCAYAAACQcBTNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIZJREFUeNqUUkEOwCAIo2b//3I3iBp1MFgvxlCKtog8ICkLeJxWPziTwF7g2qBojqInsJEj4tbQCsTZoGSUmCTGM7IGnB/EF1FxOYXV300Antl/wCg1RAF4f0CSILwLM9uqCY7FMuvgrGk4gpWoH0irRm1v7uPTqI2s8oGvL4FoN9w1uAUYAJb2PwK9FWu9AAAAAElFTkSuQmCC);
 } 
 
 .mBox.Tooltip-BlackGradient .mBoxPointerTop {
