@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* Global CSS */
 
 .mBox,
@@ -21,11 +19,9 @@
 
 /* mBox Core specific CSS */
 
->>>>>>> Version 0.2.6
 .mBox.Core {
 	font-size: 12px;
 	line-height: normal;
-	border:0;
 }
 
 .mBox.Core .mBoxContainer {
@@ -38,14 +34,5 @@
 .mBox.Core .mBoxTitle,
 .mBox.Core .mBoxFooter {
 	padding: 15px;
-<<<<<<< HEAD
 	word-break: break-word;
 }
-
-.mBox.Core.mBoxLoading .mBoxContent {
-	min-height: 11px;
-	background: url(images/mBox-Loader.gif) center center no-repeat;
-}
-=======
-}
->>>>>>> Version 0.2.6
