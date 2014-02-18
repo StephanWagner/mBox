@@ -1,3 +1,9 @@
+Notice
+------
+I'm sorry to inform you, that as of January 2014, I'm abandoning the mBox and mForm projects.
+I just can't see any future in Mootools at the moment, so I am currently working on jBox and jForm, which are clones from mBox and mForm written in jQuery.
+
+
 mBox
 ====
 
