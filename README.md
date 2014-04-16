@@ -1,19 +1,17 @@
 Notice
-------
-I'm sorry to inform you, that as of January 2014, I'm abandoning the mBox and mForm projects.
-I just can't see any future in Mootools at the moment, so I am currently working on jBox and jForm, which are clones from mBox and mForm written in jQuery.
+======
+I'm sorry to inform you, that as of January 2014, I've abandoned the mBox and mForm projects.
+I was waiting for a new version of MooTools, but it seems that the community lost interest in the further development of the framework. Currently, I'm working on jBox and jForm, which are clones from mBox and mForm written in jQuery.
 
 
 mBox
-====
+----
 
 mBox is a powerful library, helping you to easily create tooltips, modal windows, notice messages and more.
 
 Demo: http://htmltweaks.com/mBox
 
 Docs: http://htmltweaks.com/mBox/Documentation
-
-![Screenshot](http://htmltweaks.com/files/mBox/screenshot.png)
 
 How to use
 ----------
