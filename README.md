@@ -1,7 +1,7 @@
 Notice
 ======
 I'm sorry to inform you, that as of January 2014, I've abandoned the mBox and mForm projects.
-I was waiting for a new version of MooTools, but it seems that the community lost interest in the further development of the framework. Currently, I'm working on jBox and jForm, which are clones from mBox and mForm written in jQuery.
+I migrated to jQuery. If you liked mBox you will love jBox: http://stephanwagner.me/jBox.
 
 
 mBox
@@ -9,9 +9,6 @@ mBox
 
 mBox is a powerful library, helping you to easily create tooltips, modal windows, notice messages and more.
 
-Demo: http://htmltweaks.com/mBox
-
-Docs: http://htmltweaks.com/mBox/Documentation
 
 How to use
 ----------
@@ -59,7 +56,3 @@ Use mBox.Notice to show a notice to your visitors.
 	new mBox.Notice({
 		content: 'This is a default notice'
 	});
-
-Those examples show only the very basic usage of mBox.
-
-Read the Documentation at http://htmltweaks.com/mBox/Documentation to see the many options and events you can set to customize your mBoxes.
