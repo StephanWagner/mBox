@@ -1,7 +1,7 @@
 Notice
 ======
-I'm sorry to inform you, that as of January 2014, I've abandoned the mBox and mForm projects.
-I migrated to jQuery. If you liked mBox you will love jBox: http://stephanwagner.me/jBox.
+I'm sorry to inform you that I've abandoned the mBox and mForm projects.
+I migrated to jQuery. If you liked mBox you will love jBox: http://stephanwagner.me/jBox
 
 
 mBox
