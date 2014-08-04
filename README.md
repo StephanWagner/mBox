@@ -1,11 +1,9 @@
-Notice
-======
-I'm sorry to inform you that I've abandoned the mBox and mForm projects.
-I migrated to jQuery. If you liked mBox you will love jBox: http://stephanwagner.me/jBox
-
-
 mBox
-----
+====
+
+**Please note: I've abandoned this project and moved to jQuery. There won't be any more updates.**
+
+**If you liked mBox you will love jBox: http://stephanwagner.me/jBox**
 
 mBox is a powerful library, helping you to easily create tooltips, modal windows, notice messages and more.
 
