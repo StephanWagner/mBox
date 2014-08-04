@@ -1094,6 +1094,7 @@ var mBox = new Class({
 		mBox.instances.erase(this);
 		this.detachEvents();
 		this.wrapper.dispose();
+		this.overlay && this.overlay.dispose();
 		delete this.wrapper;
 	}
 	
