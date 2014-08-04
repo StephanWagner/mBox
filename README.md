@@ -5,6 +5,8 @@ mBox
 
 **If you liked mBox you will love jBox: http://stephanwagner.me/jBox**
 
+
+
 mBox is a powerful library, helping you to easily create tooltips, modal windows, notice messages and more.
 
 
