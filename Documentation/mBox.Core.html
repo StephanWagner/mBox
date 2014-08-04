@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mBox Documentation</title>
+
+<meta charset="utf-8">
+<meta name="author" content="Stephan Wagner">
+
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxCore.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxModal.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxNotice.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxTooltip.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/themes/mBoxTooltip-BlackGradient.css">
+<link rel="stylesheet" type="text/css" href="assets/default.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.1/mootools-yui-compressed.js"></script>
+<script type="text/javascript" src="assets/mootools-more-1.4.0.1.js"></script>
+<script type="text/javascript" src="../Source/min/mBox.All.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="content_container">
+<div id="content">
+
+<h1>mBox Documentation</h1>
+
+<div class="highlight_bar inset_navigation">
+<ul>
+<li class="active"><a href="mBox.Core.html">mBox.Core</a></li>
+<li class=""><a href="mBox.Tooltip.html">mBox.Tooltip</a></li>
+<li class=""><a href="mBox.Modal.html">mBox.Modal</a></li>
+<li class=""><a href="mBox.Notice.html">mBox.Notice</a></li>
+<li class=""><a href="mBox.Options.html">All Options</a></li>
+</ul>
+</div>
+
+<h2>Installation</h2>
+
+<p>To get started, all you need is a new version of <a href="http://www.mootools.net">MooTools</a> and 
+<a href="http://mootools.net/more/5bc83678c5a8e36b4fb3f592c7b278e2">MooTools More/Element.Measure</a>.<br>
+Then include <tt>mBox.Core.js</tt> together with its CSS file and you are set.<p>
+
+<ul class="file_list" style="margin:10px 0px 15px 25px">
+<li>MooTools 1.4.5</li>
+<li>MooTools More/Element.Measure</li>
+<li>mBox.Core.js</li>
+<li>assets/mBoxCore.css</li>
+</ul>
+
+<p>A very basic mBox could look like this:</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">var</span> myMBox = <span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This is a very basic mBox. Click anywhere to close.'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+myMBox.<span style="color: #000066;">open</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" onclick="myMBox.open();">Click me</a></div></div><script type="text/javascript">
+var myMBox;
+window.addEvent('domready', function() {
+	myMBox = new mBox({
+		content: 'This is a very basic mBox. Click anywhere to close.'
+	});
+});
+</script>
+
+<p>Remember to put your JavaScript code into <tt class="bg">window.addEvent('domready', function() { });</tt>.
+
+<h2>Attach your mBox to elements</h2>
+
+<p>
+The option <tt class="bg">attach</tt> helps you adding the open and close-events to your elements.<br>
+In following example, the element with id <tt class="bg">myMBox</tt> will open and close your mBox:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox will open when clicking on an element with id=&quot;myBox&quot;.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox">Click me</a></div></div><script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox will open when clicking on an element with id="myBox".',
+		attach: 'myMBox'
+	});
+});
+</script>
+
+<p>
+If you want your mBox to open on mouseenter, you can set the option <tt class="bg">event</tt> to <tt class="bg">mouseenter</tt>:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox will open on mouseenter and close on mouseleave.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox1'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;event: <span style="color: #3366CC;">'mouseenter'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox1">Hover me</a></div></div><script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox will open on mouseenter and close on mouseleave.',
+		attach: 'myMBox1',
+		event: 'mouseenter'
+	});
+});
+</script>
+
+<p>
+To attach your mBox to more than one element, you can also use a class-name.
+</p>
+
+<h2>Content</h2>
+
+<p>
+The examples above have a simple string as content, but you often need a bit more content than just plain text.<br>
+So when your content gets too big to write in JavaScript, create a hidden element and let the mBox grab it:
+</p>
+
+<div class="syntax"><pre class="html4strict"><span style="color: #009900;"><span style="color: #252525;">&lt;div</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;element_id&quot;</span> <span style="color: #000066;">style</span>=<span style="color: #ff0000;">&quot;display:none&quot;</span><span style="color: #252525;">&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;p&gt;</span></span>This Element will be injected into the mBoxes content area and then displayed.<span style="color: #009900;"><span style="color: #252525;">&lt;/p&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;p&gt;</span></span>This way you can load any size of content into your mBox.<span style="color: #009900;"><span style="color: #252525;">&lt;/p&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;/div&gt;</span></span>
+&nbsp;</pre><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'element_id'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox2'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox2">Click me</a></div></div>
+<div id="element_id" style="display:none">
+<p>This Element will be injected into the mBoxes content area and then displayed.</p>
+<p>This way you can load any size of content into your mBox.</p>
+</div>
+
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'element_id',
+		attach: 'myMBox2'
+	});
+});
+</script>
+
+<p>
+You can also use a class-name to inject more than one element into your mBox.
+</p>
+
+<h2>Size</h2>
+
+<p>By default the mBox adjusts its size to its content, but you also can specify its width and/or height:</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox is 150px wide and 100px high.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;width: <span style="color: #CC0000;">150</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;height: <span style="color: #CC0000;">100</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox3'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox3">Click me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox is 150px wide and 100px high.',
+		width: 150,
+		height: 100,
+		attach: 'myMBox3'
+	});
+});
+</script>
+
+<h2>Position</h2>
+
+<p>The default position of mBox.Core is the center of your browser-window.</p>
+<p>With the options <tt class="bg">position</tt>, <tt class="bg">offset</tt> and <tt class="bg">target</tt> you can move the mBox anywhere you want:<p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox will appear beneath element…'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;target: <span style="color: #3366CC;">'myMBox4'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;position: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="color: #66cc66;">&#91;</span><span style="color: #3366CC;">'bottom'</span>, <span style="color: #3366CC;">'outside'</span><span style="color: #66cc66;">&#93;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #3366CC;">'right'</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;offset: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="color: #CC0000;">10</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox4'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox4">Click me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox will appear beneath element<br>$(\'myMBox4\') with an offset of 10px.',
+		target: 'myMBox4',
+		position: {
+			y: ['bottom', 'outside'],
+			x: 'right'
+		},
+		offset: {
+			y: 10
+		},
+		attach: 'myMBox4'
+	});
+});
+</script>
+
+<p>
+You can set any DOM Element as target-element, including the window.<br>
+By default the position of mBox.Core is inside the target-element.
+To place an element to an outside position, you need to supply a second variable in an array, e.g. <tt class="bg">x: ['left', '<span class="highlight">outside</span>']</tt>
+</p>
+
+
+<h2>Style</h2>
+
+<p>
+Styling your mBox is done with CSS. You can either edit the <tt>mBoxCore.css</tt> file, or write your own theme.<br>
+To create a theme, duplicate <tt class="bg">mBoxCore.css</tt> and define your styles for <tt class="bg">.mBox.Core-<span class="highlight">YourThemeName</span></tt>:
+</p>
+
+<div class="syntax"><pre class="css">&lt;style type=<span style="color: #ff0000;">&quot;text/css&quot;</span>&gt;
+<span style="color: #6666ff;">.mBox</span><span style="color: #6666ff;">.Core-MyTheme</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #333;">font-size</span>: <span style="color: #933;">16px</span>;
+<span style="color: #66cc66;">&#125;</span>
+<span style="color: #6666ff;">.mBox</span><span style="color: #6666ff;">.Core-MyTheme</span> <span style="color: #6666ff;">.mBoxContainer</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #333;">background-color</span>: <span style="color: #cc00cc;">#fff</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #333;">border</span>: <span style="color: #933;">5px</span> <span style="color: #993333;">solid</span> <span style="color: #cc00cc;">#4a7ea4</span>;
+<span style="color: #66cc66;">&#125;</span>
+<span style="color: #6666ff;">.mBox</span><span style="color: #6666ff;">.Core-MyTheme</span> <span style="color: #6666ff;">.mBoxContent</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #333;">padding</span>: <span style="color: #933;">20px</span>;
+<span style="color: #66cc66;">&#125;</span>
+&lt;/style&gt;
+&nbsp;</pre><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;theme: <span style="color: #3366CC;">'MyTheme'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox has its own theme.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox5'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox5">Click me</a></div></div>
+<style type="text/css">
+.mBox.Core-MyTheme {
+	font-size: 16px;
+}
+.mBox.Core-MyTheme .mBoxContainer {
+	background-color: #fff;
+	border: 5px solid #4a7ea4;
+}
+.mBox.Core-MyTheme .mBoxContent {
+	padding: 20px;
+}
+</style>
+
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		theme: 'MyTheme',
+		content: 'This mBox has its own theme.',
+		attach: 'myMBox5'
+	});
+});
+</script>
+
+<p>
+If you need to define styles for a specific mBox, you can do so with the options <tt class="bg">setStyles</tt> or <tt class="bg">addClass</tt>.<br>
+Refer to <a href="javascript:;" onclick="new Fx.Scroll(window, {offset: {y: -20}}).toElement('h2_options');">section options</a> for more info.
+</p>
+
+<h2>Overlay</h2>
+
+<p>
+To add an overlay, simply set the option <tt class="bg">overlay</tt> to <tt class="bg">true</tt>:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox has an overlay.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;overlay: <span style="color: #003366; font-weight: bold;">true</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox6'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox6">Click me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox has an overlay.',
+		overlay: true,
+		attach: 'myMBox6'
+	});
+});
+</script>
+
+<p>
+You can also specify the overlays color, opacity and its fade-duration:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox has a white overlay.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;overlay: <span style="color: #003366; font-weight: bold;">true</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;overlayStyles: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: <span style="color: #3366CC;">'white'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity: <span style="color: #CC0000;">0.8</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;overlayFadeDuration: <span style="color: #CC0000;">50</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox7'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox7">Click me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox has a white overlay.',
+		overlay: true,
+		overlayStyles: {
+			color: 'white',
+			opacity: 0.75
+		},
+		overlayFadeDuration: 50,
+		attach: 'myMBox7'
+	});
+});
+</script>
+
+<h2>Fading</h2>
+
+<p>
+By default the mBox will fade on open and on close. This can be changed with the option <tt class="bg">fade</tt>:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox wont fade on open and will fade slowly on close.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;fade: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">open</span>: <span style="color: #003366; font-weight: bold;">false</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">close</span>: <span style="color: #003366; font-weight: bold;">true</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;fadeDuration: <span style="color: #CC0000;">1500</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox8'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example" id="myMBox8"><a href="javascript:;" onclick="myMBox.close({instant: true});">Click me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox wont fade on open and will fade slowly on close.',
+		fade: {
+			open: false,
+			close: true
+		},
+		fadeDuration: 1000,
+		attach: 'myMBox8'
+	});
+});
+</script>
+
+<p>
+You also can set the option <tt class="bg">fade</tt> to <tt class="bg">false</tt> to disable fading altogether.<br>
+To specify different fade durations, use an object: <tt class="bg">fadeDuration: { open: 200, close: 300 }</tt>
+</p>
+
+<h2>Open and close</h2>
+
+<p class="new_p">
+To open or close an mBox manually, use <tt class="bg">myMBox.open([options])</tt> or <tt class="bg">myMBox.close([options])</tt>.<br>
+Refer to following example so see what options you can use:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">var</span> myMBox = <span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox is opened manually.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;closeOnBodyClick: <span style="color: #003366; font-weight: bold;">false</span> <span style="color: #009900; font-style: italic;">// Make sure you have to click the link to close</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+myMBox.<span style="color: #000066;">open</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;instant: <span style="color: #003366; font-weight: bold;">true</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;target: <span style="color: #3366CC;">'myMBox9'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;position: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #66cc66;">&#91;</span><span style="color: #3366CC;">'left'</span>, <span style="color: #3366CC;">'outside'</span><span style="color: #66cc66;">&#93;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;offset: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #CC0000;">20</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+myMBox.<span style="color: #000066;">close</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;instant: <span style="color: #003366; font-weight: bold;">true</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example" id="myMBox9"><a href="javascript:;"
+onclick="
+myMBox2.open({
+	instant: true,
+	target: 'myMBox9',
+	position: {
+		x: ['left', 'outside']
+	},
+	offset: {
+		x: -20
+	}
+});
+">Click me to open</a><br><a href="javascript:;" onclick="myMBox2.close({instant: true});">Click me to close</a></div></div>
+<script type="text/javascript">
+var myMBox2;
+window.addEvent('domready', function() {
+	myMBox2 = new mBox({
+		content: 'This mBox is opened manually.',
+		closeOnBodyClick: false
+	});
+});
+</script>
+
+<p>
+You can delay opening and closing with the options <tt class="bg">delayOpen</tt> and <tt class="bg">delayClose</tt>:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This mBox will open after 0.5 seconds and close after 2 seconds.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;delayOpen: <span style="color: #CC0000;">500</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;delayClose: <span style="color: #CC0000;">2000</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox10'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;event: <span style="color: #3366CC;">'mouseover'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" onclick="myMBox.close({instant: true});" id="myMBox10">Hover me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		content: 'This mBox will open after 0.5 seconds and close after 2 seconds.',
+		delayOpen: 500,
+		delayClose: 2000,
+		attach: 'myMBox10',
+		event: 'mouseenter'
+	});
+});
+</script>
+
+<p>
+There are many options (like <tt class="bg">closeOnBodyClick</tt>), which allow you to control which action should close the mBox, e.g. pressing esc or clicking on the mBox itself.
+Refer to <a href="#h2_options">section options</a> for more info.
+</p>
+
+<h2>Events</h2>
+
+<p>
+You can set following events to your mBox:
+</p>
+
+<table style="margin-top:15px;">
+<tr><td style="padding-right:15px;"><tt class="bg">onInit</tt></td><td>Fires when the mBox is initialized</td></tr>
+<tr><td style="padding-right:15px;"><tt class="bg">onBoxReady</tt></td><td>Fires when the mBox is created</td></tr>
+<tr><td style="padding-right:15px;"><tt class="bg">onOpen</tt></td><td>Fires when the mBox starts opening</td></tr>
+<tr><td style="padding-right:15px;"><tt class="bg">onOpenComplete</tt></td><td>Fires when the mBox finished opening</td></tr>
+<tr><td style="padding-right:15px;"><tt class="bg">onClose</tt></td><td>Fires when the mBox starts closing</td></tr>
+<tr><td style="padding-right:15px;"><tt class="bg">onCloseComplete</tt></td><td>Fires when the mBox finished closing</td></tr>
+</table>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;onBoxReady: <span style="color: #003366; font-weight: bold;">function</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'myMBox11_content'</span><span style="color: #66cc66;">&#41;</span>.<span style="color: #006600;">setStyle</span><span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'color'</span>, <span style="color: #3366CC;">'green'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;onOpen: <span style="color: #003366; font-weight: bold;">function</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'myMBox11_content'</span><span style="color: #66cc66;">&#41;</span>.<span style="color: #006600;">set</span><span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'html'</span>, <span style="color: #3366CC;">'Opening…'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;onOpenComplete: <span style="color: #003366; font-weight: bold;">function</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'myMBox11_content'</span><span style="color: #66cc66;">&#41;</span>.<span style="color: #006600;">set</span><span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'html'</span>, <span style="color: #3366CC;">'I am open now.'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;onClose: <span style="color: #003366; font-weight: bold;">function</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'myMBox11_content'</span><span style="color: #66cc66;">&#41;</span>.<span style="color: #006600;">set</span><span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'html'</span>, <span style="color: #3366CC;">'Closing…'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;onCloseComplete: <span style="color: #003366; font-weight: bold;">function</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'myMBox11_content'</span><span style="color: #66cc66;">&#41;</span>.<span style="color: #006600;">setStyle</span><span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'color'</span>, <span style="color: #3366CC;">'blue'</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'&lt;span id=&quot;myMBox11_content&quot;&gt;&lt;/span&gt;'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myMBox11'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;fadeDuration: <span style="color: #CC0000;">3000</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myMBox11">Click me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox({
+		onBoxReady: function() {
+			$('myMBox11_content').setStyle('color', 'green');
+		},
+		onOpen: function() {
+			$('myMBox11_content').set('html', 'Opening…');
+		},
+		onOpenComplete: function() {
+			$('myMBox11_content').set('html', 'I am open now.');
+		},
+		onClose: function() {
+			$('myMBox11_content').set('html', 'Closing…');
+		},
+		onCloseComplete: function() {
+			$('myMBox11_content').setStyle('color', 'blue');
+		},
+		content: '<span id="myMBox11_content"></span>',
+		attach: 'myMBox11',
+		fadeDuration: 3000
+	});
+});
+</script>
+
+<h2>Reinitialize an mBox</h2>
+
+<p>
+When an mBox is being initialized, it attaches the events to all currently available elements.
+When you load new content (e.g. with Ajax), or create new elements, and want to attach an mBox to it, you need to reinitialize your mBox.<br>
+Use the function <tt class="bg">reInit()</tt> to reattach your mBoxes to the new elements:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">var</span> myMBox = <span style="color: #003366; font-weight: bold;">new</span> mBox<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #009900; font-style: italic;">// options…</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;
+myMBox.<span style="color: #006600;">reInit</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span>;</pre></div>
+<a name="options"></a>
+<h2 id="h2_options">Options</h2>
+
+<p>
+This is the complete list of options you can set for mBox.Core:
+<p>
+
+
+
+<table class="options_table">
+<tr>
+<td class="option">
+<div class=""><pre class="javascript">id: <span style="color: #3366CC;">''</span>,</pre></div></td>
+<td class="description">
+The id of your mBox, defaults to mBox_1, mBox_2, mBox_3…
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">theme: <span style="color: #3366CC;">''</span>,</pre></div></pre>
+</td>
+<td class="description">
+Name of your mBoxes theme.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">addClass: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;wrapper: <span style="color: #3366CC;">''</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;container: <span style="color: #3366CC;">''</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">''</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;title: <span style="color: #3366CC;">''</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;footer: <span style="color: #3366CC;">''</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+Add additional classes to the wrapper, container, content, title or footer.<br>
+To add a class only to the wrapper, provide a string, e.g. <tt class="bg">addClass: 'myClass'</tt>.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">setStyles: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;wrapper: <span style="color: #66cc66;">&#123;</span><span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;container: <span style="color: #66cc66;">&#123;</span><span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #66cc66;">&#123;</span><span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;title: <span style="color: #66cc66;">&#123;</span><span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;footer: <span style="color: #66cc66;">&#123;</span><span style="color: #66cc66;">&#125;</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+Set specific styles to the wrapper, container, content, title or footer.<br>
+To set styles only to the wrapper, provide a style object, e.g. <tt class="bg">setStyles: { color: 'red' }</tt>.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">target: $<span style="color: #66cc66;">&#40;</span>window<span style="color: #66cc66;">&#41;</span>,</pre></div></pre>
+</td>
+<td class="description">
+The target element where your mBox will be positioned at. You can use an element id, element reference,
+the <tt class="bg">$(window)</tt> object or <tt class="bg">'mouse'</tt> to stick the mBox to your pointer.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">attach: <span style="color: #003366; font-weight: bold;">null</span>,</pre></div></pre>
+</td>
+<td class="description">
+The elements which will open / close the mBox.<br>
+Use an element id, element reference or an elements class name.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">event: <span style="color: #3366CC;">'click'</span>,</pre></div></pre>
+</td>
+<td class="description">
+The event which will open / close the mBox. You can use <tt class="bg">'click'</tt> or <tt class="bg">'mousenter'</tt>.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">preventDefault: <span style="color: #003366; font-weight: bold;">false</span>,</pre></div></pre>
+</td>
+<td class="description">
+Prevents the default event to fire when clicking on an attached element. E.g. Prevents a link to follow the href, when the mBox is attached to a link.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">width: <span style="color: #3366CC;">'auto'</span>,
+height: <span style="color: #3366CC;">'auto'</span>,</pre></div></pre>
+</td>
+<td class="description">
+The width and height of the content area.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">zIndex: <span style="color: #CC0000;">8000</span>,</pre></div></pre>
+</td>
+<td class="description">
+The z-index of your mBox.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">content: <span style="color: #003366; font-weight: bold;">null</span>,</pre></div></pre>
+</td>
+<td class="description">
+The content of your mBox.<br>
+You can use a string, an element id, an element reference or a class-name.
+Those elements will be grabbed by the mBox and their style <tt class="bg">display: none</tt> will be set to <tt class="bg">display: ''</tt>
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">setContent:
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3366CC;">'data-setContent'</span>,</pre></div></pre>
+</td>
+<td class="description">
+If the element, which opens your mBox, has the attribute <tt class="bg">data-setContent</tt>, this attributes value is the new content:<br>
+<tt class="bg">data-setContent="New content"</tt> will set the content of your mBox to <tt class="bg">'New content'</tt><br>
+<tt class="bg">data-setContent="elementID"</tt> will hide all elements in the content area, then inject and display the element with <tt class="bg">id="elementID"</tt>
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">title: <span style="color: #003366; font-weight: bold;">null</span>,</pre></div></pre>
+</td>
+<td class="description">
+Adds a title to your mBox.<br>
+You can use a string, an element id or an element reference.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">footer: <span style="color: #003366; font-weight: bold;">null</span>,</pre></div></pre>
+</td>
+<td class="description">
+Adds a footer to your mBox.<br>
+You can use a string, an element id or an element reference.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">draggable: <span style="color: #003366; font-weight: bold;">false</span>,</pre></div></pre>
+</td>
+<td class="description">
+Set to <tt class="bg">true</tt>, to make your mBox dragabble when clicking on title.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">position: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #3366CC;">'center'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="color: #3366CC;">'center'</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+Defines the position of your mBox in relation to the target element.<br>
+<tt class="bg">x</tt> defnes the horizontal position, <tt class="bg">y</tt> the vertical.<br>
+If you want to set the position outside or inside the target element you need to use an array:<br>
+E.g. <tt class="bg">x: ['right', 'outside']</tt> or <tt class="bg">y: ['top', 'inside']</tt><br>
+Sometimes you need to tell the mBox which attribute to use (left or right, top or bottom). To do so use a third variable in your position array:<br>
+E.g. <tt class="bg">x: ['left', 'inside', 'right']</tt> or <tt class="bg">y: ['top', 'outside', 'bottom']</tt>
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">offset: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #CC0000;">0</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="color: #CC0000;">0</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+The horizontal or vertical offset to add or substract.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">fixed: <span style="color: #003366; font-weight: bold;">true</span>,</pre></div></pre>
+</td>
+<td class="description">
+The position of your mBox adjusts when scrolling or when you resize the window.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">pointer: <span style="color: #003366; font-weight: bold;">false</span>,</pre></div></pre>
+</td>
+<td class="description">
+If at least one of the positions is "outside", you can add a pointer to your mBox.<br>
+To adjust the pointers position, use <tt class="bg">'right'</tt>, <tt class="bg">'left'</tt>, <tt class="bg">'top'</tt>, <tt class="bg">'bottom'</tt> or <tt class="bg">'center'</tt>.<br>
+To add an offset you need to use a second variable in an array, e.g. <tt class="bg">['left', 10]</tt>.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">fade: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">open</span>: <span style="color: #003366; font-weight: bold;">true</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">close</span>: <span style="color: #003366; font-weight: bold;">true</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+Set to <tt class="bg">false</tt> to open / close the mBox instantly without fading.<br>
+To disable fading altogether, you can also set <tt class="bg">fade: false</tt>
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">fadeDuration: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">open</span>: <span style="color: #CC0000;">200</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">close</span>: <span style="color: #CC0000;">300</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+The fade duration.<br>
+You can also set <tt class="bg">fadeDuration: 200</tt> to use this value for opening and closing.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">overlay: <span style="color: #003366; font-weight: bold;">false</span></pre></div></pre>
+</td>
+<td class="description">
+Set to <tt class="bg">true</tt> to add an overlay.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">overlayStyles: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;color: <span style="color: #3366CC;">'black'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;opacity: <span style="color: #CC0000;">0.75</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+Sets the color and opacity of your overlay.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">overlayFadeDuration: <span style="color: #CC0000;">100</span>,</pre></div></pre>
+</td>
+<td class="description">
+The overlays fade duration.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">transition: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">open</span>: <span style="color: #003366; font-weight: bold;">null</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066;">close</span>: <span style="color: #003366; font-weight: bold;">null</span>
+<span style="color: #66cc66;">&#125;</span>,</pre></div></pre>
+</td>
+<td class="description">
+Adds a transition when your mBox opens or closes.<br>Following shortcuts are availible:
+<tt class="bg">'flyin'</tt>, <tt class="bg">'flyout'</tt>, <tt class="bg">'flyinout'</tt>, <tt class="bg">'flyoutin'</tt>, <tt class="bg">'bounce'</tt>, <tt class="bg">'bouncefly'</tt><br>
+You can also define your own transitions:<br>
+E.g. <tt class="bg">{open: {transition: 'bounce:in', property: 'top', duration: 400, difference_start: 50, difference_end: 0}</tt>
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">closeOnEsc: <span style="color: #003366; font-weight: bold;">true</span>,</pre></div></pre>
+</td>
+<td class="description">
+Closes your mBox when pressing esc.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">closeOnClick: <span style="color: #003366; font-weight: bold;">false</span>,</pre></div></pre>
+</td>
+<td class="description">
+Closes your mBox when clicking anywhere.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">closeOnBoxClick: <span style="color: #003366; font-weight: bold;">false</span>,</pre></div></pre>
+</td>
+<td class="description">
+Closes your mBox when clicking on the mBox itself.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">closeOnWrapperClick: <span style="color: #003366; font-weight: bold;">false</span>,</pre></div></pre>
+</td>
+<td class="description">
+Closes your mBox when clicking on the wrapper (but won't close when clicking on any child)
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">closeOnBodyClick: <span style="color: #003366; font-weight: bold;">true</span>,</pre></div></pre>
+</td>
+<td class="description">
+Closes your mBox when clicking anywhere except on the mBox itself.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">closeOnMouseleave: <span style="color: #003366; font-weight: bold;">true</span>,</pre></div></pre>
+</td>
+<td class="description">
+Closes your mBox when the mouse leaves the mBox area.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">closeInTitle: <span style="color: #003366; font-weight: bold;">false</span>,</pre></div></pre>
+</td>
+<td class="description">
+Adds a close button into the title area if there is one.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">delayOpen: <span style="color: #CC0000;">0</span>,</pre></div></pre>
+</td>
+<td class="description">
+Delay opening your mBox in ms.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">delayClose: <span style="color: #CC0000;">0</span>,</pre></div></pre>
+</td>
+<td class="description">
+Delay closing your mBox in ms.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">delayOpenOnce: <span style="color: #003366; font-weight: bold;">true</span>,</pre></div></pre>
+</td>
+<td class="description">
+<tt class="bg">delayOpen</tt> will be ignored if your mBox isn't completely closed.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">constructOnInit: <span style="color: #003366; font-weight: bold;">true</span>,</pre></div></pre>
+</td>
+<td class="description">
+When set to false your mBox will be constructed onOpen rather then when it's being initialised. Might add some performance when working with a lot of mBoxes.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<pre>
+<div class=""><pre class="javascript">openOnInit: <span style="color: #003366; font-weight: bold;">false</span></pre></div></pre>
+</td>
+<td class="description">
+Open your mBox automatically once it's initialized.
+</td>
+</tr>
+
+</table>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mBox Documentation</title>
+
+<meta charset="utf-8">
+<meta name="author" content="Stephan Wagner">
+
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxCore.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxModal.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxNotice.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxTooltip.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/themes/mBoxTooltip-BlackGradient.css">
+<link rel="stylesheet" type="text/css" href="assets/default.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.1/mootools-yui-compressed.js"></script>
+<script type="text/javascript" src="assets/mootools-more-1.4.0.1.js"></script>
+<script type="text/javascript" src="../Source/min/mBox.All.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="content_container">
+<div id="content">
+
+<h1>mBox Documentation</h1>
+
+<div class="highlight_bar inset_navigation">
+<ul>
+<li class=""><a href="mBox.Core.html">mBox.Core</a></li>
+<li class=""><a href="mBox.Tooltip.html">mBox.Tooltip</a></li>
+<li class=""><a href="mBox.Modal.html">mBox.Modal</a></li>
+<li class="active"><a href="mBox.Notice.html">mBox.Notice</a></li>
+<li class=""><a href="mBox.Options.html">All Options</a></li>
+</ul>
+</div>
+
+<p>
+With mBox.Notice you can show little notices to your visitors.
+</p>
+
+<h2>Show a Notice</h2>
+
+<p>
+Simply create a new instance of mBox.Notice and your notice will pop up immediately:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Notice</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This is a default notice'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" onclick="new mBox.Notice({content: 'This is a default notice'});">Click me</a></div></div>
+<p>
+Use the attribute <tt class="bg">type</tt> to add an icon to your notice:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Notice</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;type: <span style="color: #3366CC;">'ok'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'You clicked a link'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" onclick="new mBox.Notice({type: 'ok', content: 'You clicked a link.'});">Click me</a></div></div>
+<p>
+You can also change the position to another window corner:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Notice</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;type: <span style="color: #3366CC;">'error'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;position: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="color: #3366CC;">'top'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #3366CC;">'right'</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'An error occured'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" onclick="new mBox.Notice({type: 'error', position: {y: 'top', x: 'right'}, content: 'An error occured.'});">Click me</a></div></div>
+<p>
+Change the option <tt class="bg">offset</tt> to adjust your notices position:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Notice</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;type: <span style="color: #3366CC;">'notice'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;offset: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="color: #CC0000;">120</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #CC0000;">60</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This is a notice.'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" onclick="new mBox.Notice({type: 'notice', offset: {y: 120, x: 60}, content: 'This is a notice.'});">Click me</a></div></div>
+<p>
+Your notices will close automatically. How long they are visible for can be set with <tt class="bg">delayClose</tt>.
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Notice</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;type: <span style="color: #3366CC;">'info'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;delayClose: <span style="color: #CC0000;">1500</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This notice will disappear in 1.5 seconds.'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" onclick="new mBox.Notice({type: 'info', delayClose: 1000, content: 'This notice will disappear in 1.5 seconds.'});">Click me</a></div></div>
+<h2 id="h2_options">Options</h2>
+
+<p>
+In addition to <a href="mBox.Core.html#options">mBox.Core Options</a> you can use following options for your notices:
+</p>
+
+
+<table class="options_table">
+<tr>
+<td class="option">
+<div class=""><pre class="javascript">type: <span style="color: #3366CC;">'default'</span>,</pre></div></td>
+<td class="description">
+The type of your notice.<br>
+You can use one of the following: <tt class="bg">'ok'</tt>, <tt class="bg">'error'</tt>, <tt class="bg">'info'</tt> or <tt class="bg">'notice'</tt><br>
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<div class=""><pre class="javascript">move: <span style="color: #003366; font-weight: bold;">true</span>,</pre></div></td>
+<td class="description">
+Set <tt class="bg">move</tt> to <tt class="bg">false</tt> if you don't want your notices to move into the window.
+</td>
+</tr>
+
+<tr>
+<td class="option">
+<div class=""><pre class="javascript">moveDuration: <span style="color: #CC0000;">500</span></pre></div></td>
+<td class="description">
+The transition duration when <tt class="bg">move</tt> is <tt class="bg">true</tt>
+</td>
+</tr>
+
+</table>
+
+</div>
+</div>
+
+</body>
+</html>

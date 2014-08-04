@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mBox Documentation</title>
+
+<meta charset="utf-8">
+<meta name="author" content="Stephan Wagner">
+
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxCore.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxModal.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxNotice.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxTooltip.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/themes/mBoxTooltip-BlackGradient.css">
+<link rel="stylesheet" type="text/css" href="assets/default.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.1/mootools-yui-compressed.js"></script>
+<script type="text/javascript" src="assets/mootools-more-1.4.0.1.js"></script>
+<script type="text/javascript" src="../Source/min/mBox.All.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="content_container">
+<div id="content">
+
+<h1>mBox Documentation</h1>
+
+<div class="highlight_bar inset_navigation">
+<ul>
+<li class=""><a href="mBox.Core.html">mBox.Core</a></li>
+<li class="active"><a href="mBox.Tooltip.html">mBox.Tooltip</a></li>
+<li class=""><a href="mBox.Modal.html">mBox.Modal</a></li>
+<li class=""><a href="mBox.Notice.html">mBox.Notice</a></li>
+<li class=""><a href="mBox.Options.html">All Options</a></li>
+</ul>
+</div>
+
+<p>
+The mBox.Tooltip class extends mBox.Core, helping you to attach tooltips to any DOM element.
+</p>
+
+<h2>Attach your tooltips to elements</h2>
+
+<p>
+Attaching your tooltips works the same way as with mBox.Core, use the option <tt class="bg">attach</tt>:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'Default tooltip.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip1'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myTooltip1">Hover me</a></div></div><script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		content: 'Default tooltip.',
+		attach: 'myTooltip1'
+	});
+});
+</script>
+
+<p>
+If you want your tooltips to open with mouseclick instead, set the option <tt class="bg">event</tt> back to <tt class="bg">click</tt>:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This tooltip opens on mouseclick.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip2'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;event: <span style="color: #3366CC;">'click'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myTooltip2">Click me</a></div></div><script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		content: 'This tooltip opens on mouseclick.',
+		attach: 'myTooltip2',
+		event: 'click'
+	});
+});
+</script>
+
+<p>
+To attach your tooltip to more than one element, use a class-name and optionally set the option <tt class="bg">setContent</tt> to change your tooltips content for each element:
+</p>
+
+<div class="syntax"><pre class="html4strict"><span style="color: #009900;"><span style="color: #252525;">&lt;a</span> … <span style="color: #000066;">class</span>=<span style="color: #ff0000;">&quot;myTooltip&quot;</span> data-myTooltip=<span style="color: #ff0000;">&quot;My tooltip 1&quot;</span><span style="color: #252525;">&gt;</span></span>Hover me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;a</span> … <span style="color: #000066;">class</span>=<span style="color: #ff0000;">&quot;myTooltip&quot;</span> data-myTooltip=<span style="color: #ff0000;">&quot;My tooltip 2&quot;</span><span style="color: #252525;">&gt;</span></span>Hover me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;a</span> … <span style="color: #000066;">class</span>=<span style="color: #ff0000;">&quot;myTooltip&quot;</span> data-myTooltip=<span style="color: #ff0000;">&quot;My tooltip 3&quot;</span><span style="color: #252525;">&gt;</span></span>Hover me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span>
+&nbsp;</pre><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;setContent: <span style="color: #3366CC;">'data-myTooltip'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example">
+<a href="javascript:;" class="myTooltip" data-myTooltip="My tooltip 1" style="margin-right:10px">Hover me</a>
+<a href="javascript:;" class="myTooltip" data-myTooltip="My tooltip 2" style="margin-right:10px">Hover me</a>
+<a href="javascript:;" class="myTooltip" data-myTooltip="My tooltip 3" style="margin-right:10px">Hover me</a>
+</div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		setContent: 'data-myTooltip',
+		attach: 'myTooltip'
+	});
+});
+</script>
+
+<p>
+To make things even easier you can attach your tooltips to the attributes name instead of the class-name:
+</p>
+
+<div class="syntax"><pre class="html4strict"><span style="color: #009900;"><span style="color: #252525;">&lt;a</span> … data-tooltip=<span style="color: #ff0000;">&quot;My tooltip 1&quot;</span><span style="color: #252525;">&gt;</span></span>Hover me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;a</span> … data-tooltip=<span style="color: #ff0000;">&quot;My tooltip 2&quot;</span><span style="color: #252525;">&gt;</span></span>Hover me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;a</span> … data-tooltip=<span style="color: #ff0000;">&quot;My tooltip 3&quot;</span><span style="color: #252525;">&gt;</span></span>Hover me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span>
+&nbsp;</pre><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;setContent: <span style="color: #3366CC;">'data-tooltip'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: $$<span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'*[data-tooltip]'</span><span style="color: #66cc66;">&#41;</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example">
+<a href="javascript:;" data-tooltip="My tooltip 1" style="margin-right:10px">Hover me</a>
+<a href="javascript:;" data-tooltip="My tooltip 2" style="margin-right:10px">Hover me</a>
+<a href="javascript:;" data-tooltip="My tooltip 3" style="margin-right:10px">Hover me</a>
+</div></div>
+
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		setContent: 'data-tooltip',
+		attach: $$('*[data-tooltip]')
+	});
+});
+</script>
+
+<h2>The pointer</h2>
+
+<p>
+By default, your tooltips pointer is centered, but you can adjust its position and its offset:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This tooltips pointer is at the right.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;pointer: <span style="color: #3366CC;">'right'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip3'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" class="myTooltip3">Hover me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		content: 'This tooltips pointer is at the right.',
+		pointer: 'right',
+		attach: 'myTooltip3'
+	});
+});
+</script>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This tooltips pointer is at the top and has an offset of 10 pixel.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;pointer: <span style="color: #66cc66;">&#91;</span><span style="color: #3366CC;">'top'</span>, <span style="color: #CC0000;">10</span><span style="color: #66cc66;">&#93;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;width: <span style="color: #CC0000;">80</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;position: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: <span style="color: #3366CC;">'left'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="color: #3366CC;">'center'</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip4'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" class="myTooltip4">Hover me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		content: 'This tooltips pointer is at the top and has an offset of 10 pixel.',
+		pointer: ['top', 10],
+		width: 80,
+		position: {
+			x: 'left',
+			y: 'center'
+		},
+		attach: 'myTooltip4'
+	});
+});
+</script>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This tooltip doesn<span style="color: #000099; font-weight: bold;">\'</span>t have a pointer.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;pointer: <span style="color: #003366; font-weight: bold;">false</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip5'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" class="myTooltip5">Hover me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		content: 'This tooltip doesn\'t have a pointer.',
+		pointer: false,
+		attach: 'myTooltip5'
+	});
+});
+</script>
+
+<h2>Transition</h2>
+
+<p>
+Add a transition to your tooltips to spice them up:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This tooltip flies in.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;transition: <span style="color: #3366CC;">'flyin'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip6'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" class="myTooltip6">Hover me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		content: 'This tooltip flies in.',
+		transition: 'flyin',
+		attach: 'myTooltip6'
+	});
+});
+</script>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Tooltip</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This tooltip bounces in and flies out.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;transition: <span style="color: #3366CC;">'bouncefly'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myTooltip7'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" class="myTooltip7">Hover me</a></div></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Tooltip({
+		content: 'This tooltip bounces in and flies out.',
+		transition: 'bouncefly',
+		attach: 'myTooltip7'
+	});
+});
+</script>
+
+<p>
+You can use following transition-shortcuts:<br>
+<tt class="bg">'flyin'</tt>, <tt class="bg">'flyout'</tt>, <tt class="bg">'flyinout'</tt>, <tt class="bg">'flyoutin'</tt>, <tt class="bg">'bounce'</tt>, <tt class="bg">'bouncefly'</tt>
+</p>
+
+<h2>Options</h2>
+
+<p>
+Refer to <a href="mBox.Core.html#options">mBox.Core Options</a> for a complete list of options.
+</p>
+
+</div>
+</div>
+
+</body>
+</html>

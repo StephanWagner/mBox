@@ -1,3 +1,11 @@
+
+mBox 0.2.7                           Aug 2014
+----------------------------------------------
+
+* Documentation
+  - Added local documentation, htmltweaks.com will close next year
+  
+
 mBox 0.2.6                            Jan 2013
 ----------------------------------------------
 * mBox

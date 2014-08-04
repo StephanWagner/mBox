@@ -11,8 +11,6 @@ requires:
  - more/Element.Measure
 
 provides: [mBox]
-
-documentation: http://htmltweaks.com/mBox/Documentation
 ...
 */
  

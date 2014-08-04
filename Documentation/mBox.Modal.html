@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mBox Documentation</title>
+
+<meta charset="utf-8">
+<meta name="author" content="Stephan Wagner">
+
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxCore.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxModal.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxNotice.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/mBoxTooltip.css">
+<link rel="stylesheet" type="text/css" href="../Source/assets/themes/mBoxTooltip-BlackGradient.css">
+<link rel="stylesheet" type="text/css" href="assets/default.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.1/mootools-yui-compressed.js"></script>
+<script type="text/javascript" src="assets/mootools-more-1.4.0.1.js"></script>
+<script type="text/javascript" src="../Source/min/mBox.All.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="content_container">
+<div id="content">
+
+<h1>mBox Documentation</h1>
+
+<div class="highlight_bar inset_navigation">
+<ul>
+<li class=""><a href="mBox.Core.html">mBox.Core</a></li>
+<li class=""><a href="mBox.Tooltip.html">mBox.Tooltip</a></li>
+<li class="active"><a href="mBox.Modal.html">mBox.Modal</a></li>
+<li class=""><a href="mBox.Notice.html">mBox.Notice</a></li>
+<li class=""><a href="mBox.Options.html">All Options</a></li>
+</ul>
+</div>
+
+<p>
+With mBox.Modal you can easily set up modal dialog windows.
+</p>
+
+<h2>Attach modal dialogs to elements</h2>
+
+<p>
+Attaching your modal dialogs works the same way as with <a href="mBox.Core.html">mBox.Core</a>, use the option <tt class="bg">attach</tt>:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Modal</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;title: <span style="color: #3366CC;">'My modal dialog'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'This is a simple modal dialog window.'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myModalDialog1'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myModalDialog1">Click me</a></div></div><script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Modal({
+		title: 'My modal dialog',
+		content: 'This is a simple dialog window.',
+		attach: 'myModalDialog1'
+	});
+});
+</script>
+
+<p>
+You can drag and move the window on its title if you have installed MooTools More/Drag.
+</p>
+
+<h2>Add Buttons</h2>
+
+<p>
+You can easily add buttons to your dialogs footer:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">new</span> mBox.<span style="color: #006600;">Modal</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;title: <span style="color: #3366CC;">'Modal dialog with buttons'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;content: <span style="color: #3366CC;">'&lt;span id=&quot;text&quot;&gt;Click submit to change the text color.&lt;/span&gt;…'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;buttons: <span style="color: #66cc66;">&#91;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#123;</span> title: <span style="color: #3366CC;">'Cancel'</span> <span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#123;</span> title: <span style="color: #3366CC;">'Submit'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  event: <span style="color: #003366; font-weight: bold;">function</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  $<span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'text'</span><span style="color: #66cc66;">&#41;</span>.<span style="color: #006600;">setStyle</span><span style="color: #66cc66;">&#40;</span><span style="color: #3366CC;">'color'</span>, <span style="color: #66cc66;">&#91;</span><span style="color: #3366CC;">'red'</span>, <span style="color: #3366CC;">'blue'</span>, <span style="color: #3366CC;">'green'</span>, <span style="color: #3366CC;">'purple'</span><span style="color: #66cc66;">&#93;</span>.<span style="color: #006600;">getRandom</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span style="color: #66cc66;">&#125;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#93;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;attach: <span style="color: #3366CC;">'myModalDialog2'</span>
+<span style="color: #66cc66;">&#125;</span><span style="color: #66cc66;">&#41;</span>;</pre><div class="syntax_example"><a href="javascript:;" id="myModalDialog2">Click me</a></div></div><script type="text/javascript">
+window.addEvent('domready', function() {
+	new mBox.Modal({
+		title: 'Modal dialog with buttons',
+		content: '<span id="text" style="line-height:25px;">Click submit to change the text color.</span><br>Click cancel to close this dialog.',
+		buttons: [
+			{ title: 'Cancel' },
+			{
+				title: 'Submit',
+				event: function() {
+					$('text').setStyle('color', ['red', 'blue', 'green', 'purple'].getRandom());
+				},
+				addClass: 'button_green'
+			}
+		],
+		attach: 'myModalDialog2'
+	});
+});
+</script>
+
+<p>
+Refer to <a href="#h2_options">section options</a> to see what options you can give your buttons.
+</p>
+
+<h2>Confirm Dialog</h2>
+
+<p>
+If you include <tt>mBox.Modal.Confirm.js</tt> you can give your elements an attribute which will open a confirm window:
+</p>
+
+<div class="syntax"><pre class="javascript"><span style="color: #003366; font-weight: bold;">function</span> myFunction<span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #009900; font-style: italic;">// The action when clicking on &quot;Yes&quot;</span>
+<span style="color: #66cc66;">&#125;</span></pre><pre class="html4strict">&nbsp;
+<span style="color: #009900;"><span style="color: #252525;">&lt;a</span> <span style="color: #000066;">href</span>=<span style="color: #ff0000;">&quot;javascript:myFunction();&quot;</span> data-confirm=<span style="color: #ff0000;">&quot;Do you really want to do this?&quot;</span><span style="color: #252525;">&gt;</span></span>Click me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span>
+<span style="color: #009900;"><span style="color: #252525;">&lt;a</span> … data-confirm-<span style="color: #000066;">action</span>=<span style="color: #ff0000;">&quot;myFunction();&quot;</span> data-confirm=<span style="color: #ff0000;">&quot;Do you …?|Yes, please|No, thanks&quot;</span><span style="color: #252525;">&gt;</span></span>Click me<span style="color: #009900;"><span style="color: #252525;">&lt;/a&gt;</span></span></pre><div class="syntax_example"><a href="javascript:myFunction();" data-confirm="Do you really want to do this?">Click me</a><br>
+<a href="javascript:;" data-confirm-action="myFunction();" data-confirm="Do you really want to do this?|Yes, please|No, thanks">Click me</a></div></div><script type="text/javascript">
+function myFunction() {
+	new mBox.Notice({
+		type: 'ok',
+		content: 'You just confirmed to do evaluate myFunction().'
+	});
+}
+</script>
+
+<p>
+Your dialogs will evaluate the elements <tt class="bg">data-confirm-action</tt> attribute or its <tt class="bg">href</tt> value if it's a link.<br>
+To change the title of the buttons, add the new titles separated with <tt class="bg">|</tt> to <tt class="bg">data-confirm</tt>.<br>
+MBox.Modal.Confirm works nicely together with <a href="mBox.Notice.html">mBox.Notice</a>.
+</p>
+
+<h2 id="h2_options">Options</h2>
+
+<p>
+In addition to <a href="mBox.Core.html#options">mBox.Core Options</a> you can use following options for your modal dialogs:
+</p>
+
+
+<table class="options_table">
+<tr>
+<td class="option">
+<div class=""><pre class="javascript">buttons: <span style="color: #66cc66;">&#91;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#123;</span> title: <span style="color: #3366CC;">'My Button 1'</span> <span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: <span style="color: #3366CC;">'My Button 2'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addClass: <span style="color: #3366CC;">'button'</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setStyles: <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marginLeft: <span style="color: #CC0000;">20</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event: <span style="color: #003366; font-weight: bold;">function</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span> <span style="color: #66cc66;">&#123;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #000066; font-weight: bold;">this</span>.<span style="color: #000066;">close</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: <span style="color: #3366CC;">'my_button'</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #66cc66;">&#125;</span>
+<span style="color: #66cc66;">&#93;</span></pre></div></td>
+<td class="description">
+Adds buttons to your mBoxes footer.<br>
+The option <tt class="bg">event</tt> will be evaluated when you click on the button, it defaults to <tt class="bg">this.close()</tt>.<br>
+</td>
+</tr>
+</table>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -12,8 +12,6 @@ requires:
  - more/Element.Measure
 
 provides: [mBox.Modal]
-
-documentation: http://htmltweaks.com/mBox/Documentation/Modal
 ...
 */
  

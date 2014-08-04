@@ -2,6 +2,4 @@ name: mBox
 author: StephanWagner
 category: Interface
 tags: [box, tooltip, modal, window, dialog, popup, notice, element]
-docs: http://htmltweaks.com/mBox/Documentation
-demo: http://htmltweaks.com/mBox
 current: 0.2.6

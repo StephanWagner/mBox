@@ -12,8 +12,6 @@ requires:
  - more/Element.Measure
 
 provides: [mBox.Notice]
-
-documentation: http://htmltweaks.com/mBox/Documentation/Notice
 ...
 */
  

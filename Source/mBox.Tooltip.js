@@ -12,8 +12,6 @@ requires:
  - more/Element.Measure
 
 provides: [mBox.Tooltip]
-
-documentation: http://htmltweaks.com/mBox/Documentation/Tooltip
 ...
 */
  

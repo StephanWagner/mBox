@@ -13,8 +13,6 @@ requires:
  - more/Element.Measure
 
 provides: [mBox.Modal.Confirm]
-
-documentation: http://htmltweaks.com/mBox/Documentation/Modal
 ...
 */
  
